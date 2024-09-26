@@ -1,0 +1,21 @@
+def salvar_produtos(produtos):
+    with open('produtos.txt', 'w') as file:
+        json.dump(produtos, file)
+
+def adicionar_produto(nome, preco_compra, preco_venda, fabricante):
+    produtos = carregar_produtos()
+    produtos.append({
+        'nome': nome,
+        'fabricante': fabricante,
+        'preco_compra': preco_compra,
+        'preco_venda': preco_venda
+    })
+    salvar_produtos(produtos)
+    print(f'Produto "{nome}" adicionado com sucesso.')
+
+def remover_produto(nome):
+    produtos = carregar_produtos()
+    produtos = [produto for produto in produtos if produto['nome'] != nome]
+    salvar_produtos(produtos)
+    print(f'Produto "{nome}" removido com sucesso.')
+    
