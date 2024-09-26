@@ -1,0 +1,12 @@
+def registrar_venda(produto_nome, quantidade):
+    if not any(produto['nome'] == produto_nome for produto in carregar_produtos()):
+        print(f'Produto "{produto_nome}" não encontrado.')
+        return
+    with open('vendas.txt', 'a') as file:
+        file.write(f"{produto_nome},{quantidade}\n")
+    print(f'Venda de {quantidade} unidades de "{produto_nome}" registrada.')
+
+def cancelar_venda(produto_nome, quantidade):
+    with open('vendas.txt', 'a') as file:
+        file.write(f"{produto_nome},{-quantidade}\n")
+    print(f'Venda de {quantidade} unidades de "{produto_nome}" cancelada.')
